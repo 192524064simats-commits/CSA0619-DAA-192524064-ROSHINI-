@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int T(int n)
+{
+    if (n == 1)
+        return 1;
+
+    return T(n - 1) + n;
+}
+
+int main()
+{
+    int n;
+
+    printf("SOCIAL MEDIA FEED PROCESSING\n");
+    printf("-----------------------------\n");
+
+    printf("Enter the number of posts: ");
+    scanf("%d", &n);
+
+    printf("\nTotal Processing Cost = %d\n", T(n));
+    printf("Time Complexity = O(n^2)\n");
+
+    return 0;
+}
