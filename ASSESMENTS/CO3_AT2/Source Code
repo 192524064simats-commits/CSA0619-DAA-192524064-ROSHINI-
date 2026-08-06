@@ -1,0 +1,30 @@
+def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1
+
+
+employee_ids = [1001, 1005, 1010, 1015, 1020, 1025, 1030, 1035, 1040, 1045]
+
+print("Employee Database (Sorted)")
+print(employee_ids)
+
+target = int(input("Enter Employee ID to search: "))
+
+index = binary_search(employee_ids, target)
+
+if index != -1:
+    print("Employee ID", target, "found at index", index)
+else:
+    print("Employee ID", target, "not found.")
