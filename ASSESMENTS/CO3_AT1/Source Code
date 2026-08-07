@@ -1,0 +1,71 @@
+import time
+
+# Binary Search Function
+def binary_search(arr, target):
+    left = 0
+    right = len(arr) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if arr[mid] == target:
+            return mid
+
+        elif arr[mid] < target:
+            left = mid + 1
+
+        else:
+            right = mid - 1
+
+    return -1
+
+
+# Function to simulate processor speed
+def simulate_processor(speed_name, delay):
+    print("\n===================================")
+    print("Processor:", speed_name)
+    print("Artificial Delay:", delay, "seconds")
+    print("===================================")
+
+    # Large sorted dataset
+    arr = list(range(1, 1000001))
+
+    target = 987654
+
+    start = time.perf_counter()
+
+    # Artificial CPU delay
+    time.sleep(delay)
+
+    index = binary_search(arr, target)
+
+    end = time.perf_counter()
+
+    execution_time = end - start
+
+    if index != -1:
+        print("Target Found at Index:", index)
+    else:
+        print("Target Not Found")
+
+    print("Execution Time: {:.6f} seconds".format(execution_time))
+
+    return execution_time
+
+
+# Simulated hardware architectures
+fast = simulate_processor("High-Speed Processor (3.5 GHz)", 0.001)
+medium = simulate_processor("Medium-Speed Processor (2.0 GHz)", 0.005)
+slow = simulate_processor("Low-Speed Processor (1.0 GHz)", 0.01)
+
+print("\n========== Performance Comparison ==========")
+print("Fast Processor   :", round(fast, 6), "seconds")
+print("Medium Processor :", round(medium, 6), "seconds")
+print("Slow Processor   :", round(slow, 6), "seconds")
+
+print("\nConclusion:")
+print("1. Faster processors execute Binary Search more quickly.")
+print("2. Slower processors increase execution time.")
+print("3. The number of Binary Search comparisons remains almost the same.")
+print("4. Binary Search keeps O(log n) time complexity regardless of hardware.")
+print("5. This demonstrates that Binary Search is robust across different systems.")
