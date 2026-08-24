@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int main() {
+    int n;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter array elements: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int maxProd = arr[0];
+    int minProd = arr[0];
+    int result = arr[0];
+
+    for (int i = 1; i < n; i++) {
+        int tempMax = maxProd;
+
+        if (arr[i] < 0) {
+            maxProd = minProd;
+            minProd = tempMax;
+        }
+
+        if (arr[i] > maxProd * arr[i])
+            maxProd = arr[i];
+        else
+            maxProd = maxProd * arr[i];
+
+        if (arr[i] < minProd * arr[i])
+            minProd = arr[i];
+        else
+            minProd = minProd * arr[i];
+
+        if (maxProd > result)
+            result = maxProd;
+    }
+
+    printf("Max Product = %d\n", result);
+
+    return 0;
+}
