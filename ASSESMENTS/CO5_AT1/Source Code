@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define N 3
+
+// Function to evaluate the Boolean circuit
+bool evaluateCircuit(bool x[])
+{
+    // Circuit:
+    // G1 = X1 AND X2
+    // G2 = X2 OR X3
+    // Output = G1 OR G2
+
+    bool G1 = x[0] && x[1];
+    bool G2 = x[1] || x[2];
+
+    return G1 || G2;
+}
+
+// Backtracking function
+bool backtrack(bool x[], int index)
+{
+    // All inputs assigned
+    if (index == N)
+    {
+        if (evaluateCircuit(x))
+        {
+            printf("\nSatisfying assignment found:\n");
+
+            for (int i = 0; i < N; i++)
+                printf("X%d = %d\n", i + 1, x[i]);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    // Try assigning 0
+    x[index] = false;
+
+    if (backtrack(x, index + 1))
+        return true;
+
+    // Try assigning 1
+    x[index] = true;
+
+    if (backtrack(x, index + 1))
+        return true;
+
+    // Backtrack
+    return false;
+}
+
+int main()
+{
+    bool x[N];
+
+    printf("Boolean Circuit Satisfiability Problem\n");
+    printf("Circuit: (X1 AND X2) OR (X2 OR X3)\n");
+
+    if (!backtrack(x, 0))
+        printf("\nNo satisfying assignment exists.\n");
+
+    return 0;
+}
